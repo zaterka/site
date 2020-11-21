@@ -188,6 +188,7 @@ header {
   background-color: transparent;
   width: 180px;
   height: 180px;
+  margin-bottom: 10%;
 
   /* perspectiva para elementos 3d posicionados */
   /* Quando definimos a perspectiva em um elemento, é o elemento filho que recebe a visão de perspectiva, e não ele mesmo */
