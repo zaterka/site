@@ -1,31 +1,224 @@
-body{
-  background: black;
-}
-.menu {
-  background-color: white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: teal;
-  text-decoration: none;
+body {
+  background-image: url('../img/cool-background.png');
+  background-size: auto 100vh;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
-a:hover {
-  text-decoration: underline;
+
+@media (min-width: 400px) {
+  body {
+    font-size: 18px;
+  }
 }
-.menu ul{
+
+@media (min-width: 600px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+header {
+  height: 100vh;
   display: flex;
-  justify-content:space-around;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.menu li{
+
+.menu {
+  background-color: MidnightBlue;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu li {
   list-style: none;
 }
 
-.site-subtitle,
-.site-title {
+/* property name | duration | timing function | delay */
+.menu a {
+  color: ivory;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: color, background-color 1s;
+}
+
+.menu a:active,
+.menu a:hover {
+  background-color: teal;
+  color: white;
+}
+
+@keyframes animacaoTitulo {
+
+  0%   { 
+    opacity: 0;
+    transform: scale(0.8) translateY(10vh);
+  }  
+
+  100% {
+     opacity: 1; 
+     transform: scale(1) translateY(0); 
+  }
+  
+}
+
+/* Aplicando direto na classe pra começar dessa forma inicial sem esperar o carregamento da pagina */
+.titulo {
+  opacity: 0;
+  transform: scale(0.8) translateY(10vh);
+  animation: 1s ease-out .2s 1 forwards animacaoTitulo;
+
+  /*
+    Descrição das propriedades de animações (s/short-hand)
+  
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-name: animacaoInicial; 
+  */
+}
+
+.site-title , .nome-sobre {
   color: whitesmoke;
+  font-family: 'Poppins', sans-serif;
+  font-size: 4em;
+  line-height: 1em;
+  margin-bottom: 20px;
+}
+
+.site-title  {
   text-align: center;
 }
 
 .site-subtitle {
+  color: silver;
   font-style: italic;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 2em;
 }
+
+.contato,
+.portfolio {
+  padding: 1em;
+}
+
+.contato h2,
+.portfolio h2 {
+  color: white;
+  font-family: 'Merriweather', serif;
+  font-size: 2.2em;
+  margin-bottom: .5em;
+}
+
+ .grid {
+  color: silver;
+  display: grid;
+  gap: 1em;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (min-width: 400px) {
+  .contato,
+  .portfolio {
+    padding: 3em 2em 2em;
+    height: 100vh;
+  }
+
+   .grid {
+    grid-template-columns: 200px 200px;
+    height: calc(100vh - 4.5em - 75px);
+  }
+}
+
+@media (min-width: 940px) {
+  .contato,
+  .portfolio {
+    padding: 2em;
+  }
+
+   .grid {
+    grid-template-columns: repeat(4, 200px);
+    height: calc(100vh - 8em - 75px);
+  }
+}
+
+.portfolio figcaption {
+  font-weight: bold;
+}
+
+.img-portfolio {
+  border-radius: 10px;
+  height: 180px;
+  object-fit: cover;
+  width: 180px;
+}
+
+.icons a {
+  color: white;
+  font-size: 6em;
+}
+
+.icons a:active i,
+.icons a:hover i {
+  text-shadow: 0 0 10px rgba(255,255,255,1);
+  transition: .5s;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 180px;
+  height: 180px;
+
+  /* perspectiva para elementos 3d posicionados */
+  /* Quando definimos a perspectiva em um elemento, é o elemento filho que recebe a visão de perspectiva, e não ele mesmo */
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  /* Faz com que ele gire em torno do seu eixo Y, dando a impressão que que o card está virando */
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* configura a parte de trás de ambos os lados para não aparecerem, p/ dar a impressão de que são um card só */
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: MidnightBlue;
+  transform: rotateY(180deg);
+  border-radius: 10px;
+}
+
